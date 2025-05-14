@@ -1,0 +1,174 @@
+/* ===== Global Styles ===== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===== Campo de Firma ===== */
+.apm-signature-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.apm-signature-container:hover {
+  transform: scale(1.02);
+}
+
+.apm-signature-canvas {
+  display: block;
+  background: #fafafa;
+  cursor: crosshair;
+}
+
+.apm-signature-container input[type="hidden"] {
+  display: none;
+}
+
+/* ===== Campo de Coordenadas Geográficas ===== */
+.apm-geocoords-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.apm-geocoords-container button {
+  padding: 8px 12px;
+  border: 2px solid #4a90e2;
+  background: #4a90e2;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.apm-geocoords-container button:hover {
+  background: #357ABD;
+  transform: scale(1.02);
+}
+
+.apm-geocoords-display {
+  font-weight: 600;
+  background: #fff;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ===== Modal para Coordenadas ===== */
+.apm-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.apm-modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.apm-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.apm-modal-close:hover {
+  color: #333;
+}
+
+/* ===== Campo de Color con Paleta Personalizada ===== */
+.apm-css3colors-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.apm-css3colors-display {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 2px solid #4CAF50;
+  color: #4CAF50;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.apm-css3colors-display:hover {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.apm-css3colors-palette {
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  width: 260px;
+  top: 110%;
+  left: 0;
+  border-radius: 5px;
+}
+
+.apm-css3colors-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.apm-css3colors-item:hover {
+  background: #f0f0f0;
+}
+
+.apm-css3colors-item .color-swatch {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
