@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo de Controles - Andrei Palegreen Modified</title>
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Estilos de Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+<body>
+  <h1>Demo de Controles: Firma, Coordenadas y Color CSS3</h1>
+  <form action="#" method="post">
+    <!-- Campo de Firma -->
+    <fieldset>
+      <legend>Campo de Firma</legend>
+      <label for="firma">Firma:</label>
+      <input type="text" id="firma" name="firma" class="apm-signature">
+    </fieldset>
+    
+    <!-- Campo de Coordenadas Geográficas -->
+    <fieldset>
+      <legend>Campo de Coordenadas Geográficas</legend>
+      <label for="coords">Coordenadas:</label>
+      <input type="text" id="coords" name="coords" class="apm-geocoords">
+    </fieldset>
+    
+    <!-- Campo de Color con Paleta Personalizada -->
+    <fieldset>
+      <legend>Campo de Color</legend>
+      <label for="color">Color:</label>
+      <input type="text" id="color" name="color" class="apm-css3colors">
+    </fieldset>
+    
+    <button type="submit">Enviar</button>
+  </form>
+  
+  <!-- Scripts -->
+  <!-- Cargamos Leaflet JS desde CDN -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Lógica principal de la aplicación -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
