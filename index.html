@@ -12,10 +12,12 @@
 <body>
   <h1>Demo de Controles: Firma, Coordenadas y Color CSS3</h1>
   <form action="#" method="post">
+  
     <!-- Campo de Firma -->
     <fieldset>
       <legend>Campo de Firma</legend>
       <label for="firma">Firma:</label>
+      <!-- Nota: Este input se transformará en un canvas interactivo -->
       <input type="text" id="firma" name="firma" class="apm-signature">
     </fieldset>
     
@@ -23,6 +25,7 @@
     <fieldset>
       <legend>Campo de Coordenadas Geográficas</legend>
       <label for="coords">Coordenadas:</label>
+      <!-- Este input se adaptará para seleccionar coordenadas mediante un mapa -->
       <input type="text" id="coords" name="coords" class="apm-geocoords">
     </fieldset>
     
@@ -30,13 +33,13 @@
     <fieldset>
       <legend>Campo de Color</legend>
       <label for="color">Color:</label>
+      <!-- Este input se convertirá en un selector visual de colores -->
       <input type="text" id="color" name="color" class="apm-css3colors">
     </fieldset>
     
     <button type="submit">Enviar</button>
   </form>
   
-  <!-- Scripts -->
   <!-- Cargamos Leaflet JS desde CDN -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <!-- Lógica principal de la aplicación -->
