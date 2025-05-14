@@ -172,3 +172,40 @@ h1 {
   border-radius: 3px;
   border: 1px solid #ccc;
 }
+/* Estilo para el botón de "Enviar" */
+button[type="submit"] {
+  background: #4CAF50;
+  border: 2px solid #4CAF50;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background: #45a049;
+  transform: scale(1.03);
+}
+
+/* Estilo para el botón de "Cargar Archivo JSON" */
+button#loadFileButton {
+  background: #FF9800;
+  border: 2px solid #FF9800;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+button#loadFileButton:hover {
+  background: #e68900;
+  transform: scale(1.03);
+}
