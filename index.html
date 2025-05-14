@@ -38,6 +38,15 @@
     </fieldset>
     
     <button type="submit">Enviar</button>
+    <!-- Botón que simula la carga y abre el diálogo de selección -->
+    <button id="loadFileButton" type="button">Cargar Archivo JSON</button>
+    <!-- Input de archivo (oculto) -->
+    <input type="file" id="jsonFileInput" accept=".json" style="display:none;">
+
+    <!-- Contenedor para visualizar el JSON cargado (opcional) -->
+    <pre id="jsonPreview" style="background:#f0f0f0; padding:10px; border:1px solid #ccc;"></pre>
+
+
   </form>
   
   <!-- Cargamos Leaflet JS desde CDN -->

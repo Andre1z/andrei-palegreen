@@ -364,4 +364,119 @@
     });
 
   });
+  
 })();
+// Función para recopilar los datos de los tres campos
+// Función que recopila los datos de los tres campos:
+function gatherFormData() {
+  // Se asume que cada uno de los controles ya ha sido convertido y contiene un input hidden.
+  const signature = document.querySelector('.apm-signature-container input[type="hidden"]')?.value || "";
+  const coords    = document.querySelector('.apm-geocoords-container input[type="hidden"]')?.value || "";
+  const color     = document.querySelector('.apm-css3colors-container input[type="hidden"]')?.value || "";
+
+  return {
+    firma: signature,
+    coords: coords,
+    color: color
+  };
+}
+
+// Función para disparar la descarga del archivo JSON utilizando Blob
+function downloadJSON(jsonData, filename = 'datos.json') {
+  const jsonStr = JSON.stringify(jsonData, null, 2);
+  const blob = new Blob([jsonStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.setAttribute("href", url);
+  a.setAttribute("download", filename);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+// Función que se ejecuta al enviar el formulario
+function handleFormSubmit(e) {
+  e.preventDefault();  // Evita el envío tradicional del formulario
+  const formData = gatherFormData();
+  
+  // Almacenamos el JSON de forma global, si fuera necesario para otras operaciones.
+  window.generatedFormJson = formData;
+  console.log("JSON generado:", formData);
+  
+  // Aquí se dispara la descarga del archivo datos.json
+  downloadJSON(formData, "datos.json");
+  
+  // Notificamos al usuario (opcional)
+  alert("JSON generado y descargado como datos.json.");
+}
+
+// Enlazamos el evento submit del formulario a nuestra función
+document.querySelector('form').addEventListener('submit', handleFormSubmit);
+// Función para manejar la carga del archivo JSON
+function handleJsonFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+      
+      // Actualizar el campo de firma y redibujar la imagen en el canvas
+      const sigHiddenInput = document.querySelector('.apm-signature-container input[type="hidden"]');
+      if (sigHiddenInput && jsonData.firma) {
+        sigHiddenInput.value = jsonData.firma;
+        const canvas = document.querySelector('.apm-signature-container canvas');
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          img.onload = function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          };
+          img.src = jsonData.firma;
+        }
+      }
+
+      // Actualizar el campo de coordenadas
+      const geoHiddenInput = document.querySelector('.apm-geocoords-container input[type="hidden"]');
+      const geoDisplay = document.querySelector('.apm-geocoords-container .apm-geocoords-display');
+      if (geoHiddenInput && geoDisplay && jsonData.coords) {
+        geoHiddenInput.value = jsonData.coords;
+        // Asumimos que el formato es "lat,lng"
+        const parts = jsonData.coords.split(',');
+        geoDisplay.innerText = 'Lat: ' + parts[0] + ', Lng: ' + parts[1];
+      }
+
+      // Actualizar el campo de color
+      const colorHiddenInput = document.querySelector('.apm-css3colors-container input[type="hidden"]');
+      const colorDisplay = document.querySelector('.apm-css3colors-container .apm-css3colors-display');
+      if (colorHiddenInput && colorDisplay && jsonData.color) {
+        colorHiddenInput.value = jsonData.color;
+        colorDisplay.innerText = jsonData.color;
+        // Actualizamos el fondo para visualizar el color
+        colorDisplay.style.background = jsonData.color;
+        colorDisplay.style.color = "#fff";
+      }
+      
+      // (Opcional) Mostrar el JSON cargado en un contenedor de la página,
+      // por ejemplo, en un <pre id="jsonPreview"></pre>
+      const jsonPreview = document.getElementById('jsonPreview');
+      if (jsonPreview) {
+        jsonPreview.textContent = JSON.stringify(jsonData, null, 2);
+      }
+    } catch(err) {
+      alert("Error al procesar el JSON: " + err);
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+// Vincular el input file para que, al cambiar, lea el JSON
+document.getElementById('jsonFileInput').addEventListener('change', handleJsonFile);
+
+// Opcional: botón para disparar la carga del archivo JSON (abre el dialogo de selección)
+document.getElementById('loadFileButton').addEventListener('click', function() {
+  document.getElementById('jsonFileInput').click();
+});
